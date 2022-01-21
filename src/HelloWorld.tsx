@@ -1,7 +1,14 @@
-import {interpolate, Sequence, useCurrentFrame, useVideoConfig} from 'remotion';
+import {
+	Audio,
+	interpolate,
+	Sequence,
+	useCurrentFrame,
+	useVideoConfig,
+} from 'remotion';
 import {Logo} from './HelloWorld/Logo';
 import {Subtitle} from './HelloWorld/Subtitle';
 import {Title} from './HelloWorld/Title';
+import {useAudioData} from '@remotion/media-utils';
 
 export const HelloWorld: React.FC<{
 	titleText: string;
@@ -9,6 +16,9 @@ export const HelloWorld: React.FC<{
 }> = ({titleText, titleColor}) => {
 	const frame = useCurrentFrame();
 	const videoConfig = useVideoConfig();
+	const audioData = useAudioData(
+		'https://rss.art19.com/episodes/4f7edbd1-50fc-4175-8561-13a40481cadc.mp3'
+	);
 
 	const opacity = interpolate(
 		frame,
@@ -34,6 +44,7 @@ export const HelloWorld: React.FC<{
 					<Subtitle />
 				</Sequence>
 			</div>
+			{/* <Audio src="https://rss.art19.com/episodes/4f7edbd1-50fc-4175-8561-13a40481cadc.mp3" /> */}
 		</div>
 	);
 };
